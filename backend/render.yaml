@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: price-oracle-backend
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: MONGODB_URI
+        value: mongodb+srv://sumitrathod22724:HVJqT0cmZUsIgdXu@cluster0.1bhqcmt.mongodb.net/price-oracle
+      - key: REDIS_HOST
+        value: redis-15494.c9.us-east-1-2.ec2.cloud.redislabs.com
+      - key: REDIS_PORT
+        value: 15494
+      - key: REDIS_PASSWORD
+        value: o3Ph6MpXftJ7BIRbtsIMIDI5uFEsdevm
+      - key: ALCHEMY_API_KEY
+        value: your_alchemy_api_key_here
+      - key: ALCHEMY_NETWORK
+        value: eth-mainnet
+
+  - type: web
+    name: price-oracle-frontend
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/.next
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        value: https://price-oracle-backend.onrender.com 
