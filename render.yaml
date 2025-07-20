@@ -24,9 +24,9 @@ services:
 
   - type: web
     name: price-oracle-frontend
-    env: static
+    env: node
     buildCommand: cd frontend && npm install && npm run build
-    staticPublishPath: frontend/out
+    startCommand: cd frontend && npm start
     envVars:
       - key: NEXT_PUBLIC_API_URL
         value: https://price-oracle-backend.onrender.com 
